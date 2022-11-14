@@ -12,26 +12,35 @@ import java.util.Map;
 @RequestMapping("/v1/orders")
 public class OrderController {
 
+    //주문 정보 생성
     @PostMapping
-    public ResponseEntity postOrder(@RequestParam("memberId")long memberId,
-                                    @RequestParam("coffeeId")long coffeeId){
+    public ResponseEntity postOrder(@RequestBody OrderPostDto orderPostDto
+                                    ){
         Map<String,Object> map = new HashMap<>();
-        map.put("memberId",memberId);
-        map.put("coffeeId", coffeeId);
+
 
         return new ResponseEntity<>(map,HttpStatus.CREATED);
     }
 
+    //주문 정보 변경
+    @PatchMapping("/{order-id}")
+    public ResponseEntity patchOrder(@PathVariable String orderId,
+                                     @RequestBody OrderPatchDto orderPatchDto) {
+        return null;
+
+    }
+
     @GetMapping("/{order-id}")
     public ResponseEntity getOrder(@PathVariable("order-id") Long orderId) {
+
         System.out.println("#orderId : " + orderId);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping
-    public String getOrders() {
+    public ResponseEntity getOrders() {
         System.out.println("#get Orders");
-        return null;
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

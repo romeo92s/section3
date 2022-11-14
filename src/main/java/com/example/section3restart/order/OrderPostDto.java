@@ -1,5 +1,5 @@
 package com.example.section3restart.order;
 
-public class OrderDto {
+public class OrderPostDto {
 
 }
