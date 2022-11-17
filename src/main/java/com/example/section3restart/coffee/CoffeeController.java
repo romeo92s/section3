@@ -4,19 +4,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/v1/coffees")
 public class CoffeeController {
 
     @PostMapping
-    public ResponseEntity postCoffee(@RequestBody CoffeePostDto coffeePostDto) {
+    public ResponseEntity postCoffee(@Valid @RequestBody CoffeePostDto coffeePostDto) {
 
         return new ResponseEntity<>(coffeePostDto,HttpStatus.CREATED);
     }
 
     @PatchMapping("/{coffee-id}")
-    public ResponseEntity patchCoffee(@PathVariable("coffee-id") long coffeeId,
+    public ResponseEntity patchCoffee(@Valid @PathVariable("coffee-id") long coffeeId,
                                       @RequestBody CoffeePatchDto coffeePatchDto) {
         coffeePatchDto.setKorName("아메리카노");
         coffeePatchDto.setPrice(6000);
